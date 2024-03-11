@@ -66,23 +66,49 @@ class Jogos{
             td_valor.innerText=this.arrayjogos[i].preco;
             
            let imgedit=document.createElement('img');
-           imgedit.src='icons8-editar-50.png';
+           imgedit.src='imagens/edit.png';
            let imgdel=document.createElement('img');
-           imgdel.src='icons8-excluir-lixeira-50.png'
+           imgdel.src='imagens/del.png'
+           imgdel.setAttribute("onclick","jogos.apagar("+ this.arrayjogos[i].id+ ")");
+           imgedit.setAttribute("onclick","jogos.Editar("+  JSON.stringify(this.arrayjogos[i])+")");
+           
+           
            td_acoes.appendChild(imgdel);
-
            td_acoes.appendChild(imgedit);
 
         }
     }
     cancelar(){
-           document.getElementById('Jogo1').value='';
-           document.getElementById('genero').value='';
-           document.getElementById('preco1').value='';
+           
+        document.getElementById('Jogo1').value='';
+        document.getElementById('genero').value='';
+        document.getElementById('preco1').value='';
            
            
 
     }
+    apagar(id){
+        if(confirm('deseja deletar o produto do id'+' '+ id)){
+        let tbody= document.getElementById('linhastabela');
+        for(let i =0;i<this.arrayjogos.length;i++)
+        {
+          if(this.arrayjogos[i].id==id )
+          {
+           this.arrayjogos.splice(i,1);
+           linhastabela.deleteRow(i);
+          }
+        } 
+       }
+    }
+    Editar(d)
+    {
+
+        document.getElementById('Jogo1').value=d.nomeJogo;
+        document.getElementById('genero').value=d.genero;
+        document.getElementById('preco1').value=d.preco1;
+        document.getElementById('btn1').innerText="Atualizar";
+    }
+     
     
 }
 var jogos= new Jogos;
