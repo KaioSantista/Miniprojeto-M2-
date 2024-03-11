@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Minha Loja de Jogos</h1>
+    </header>
+    <main>
+        <div id="title">
+         <h2>Jogos</h2>
+         <span>Lista de Jogos</span>
+        </div>
+        <div class="card">
+            <div class="inputs">
+                <label>Produto</label>
+                <input type="text" id="Jogo" placeholder="Nome do jogo">
+            </div>
+            <div class="inputs">
+                <label>Genero do Jogo</label>
+                <input type="text" id="genero" placeholder="Genero do Jogo">
+            </div>
+            <div class="inputs">
+                <label>Valor</label>
+                <input type="text" id="Valor" placeholder="Valor do jogo">
+             </div>
+            <button onclick="jogos.adiciona()">Adicionar Jogos</button>
+            <button onclick="jogos.excluir()">Excluir Jogos</button>
+        </div>
+        <div class="conteiner">
+          <table border ="1">
+            <thead>
+                <th>ID</th>
+                <th>Jogo</th>
+                <th>Genero</th>
+                <th>Valor</th>
+                <th class="center">Ações</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="center">1</td>
+                <td>god of war</td>
+                <td>Ação</td>
+                <td>300</td>
+                <td class="center">
+                    <img src="icons8-editar-50.png" alt="">
+                    <img src="icons8-excluir-lixeira-50.png" alt="">
+                </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        
+    </main>
+    
+</body>
+</html>
