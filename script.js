@@ -3,11 +3,18 @@ class Jogos{
     {
         this.id=1 ;
         this.arrayjogos=[];
+        this.edit=null;
     }
+    
     salvar(){
         let jogos= this.lerDados();
         if(this.validardados(jogos)){
-            this.adicionar(jogos);
+            if(this.edit==null){
+                this.adicionar(jogos); 
+            }
+            else{
+                this.atualizar(this.edit,jogos);
+            }
         }
         console.log(this.arrayjogos);
         this.listaTabela();
@@ -58,19 +65,19 @@ class Jogos{
             let td_nome=tr.insertCell();
             let td_genero=tr.insertCell();
             let td_valor=tr.insertCell();
-            let td_acoes=tr.insertCell();
-
+             let td_acoes=tr.insertCell();
             td_id.innerText=this.arrayjogos[i].id;
             td_nome.innerText=this.arrayjogos[i].nomeJogo;
             td_genero.innerText=this.arrayjogos[i].genero;
             td_valor.innerText=this.arrayjogos[i].preco;
+            td_id.classList.add('center')
             
-           let imgedit=document.createElement('img');
-           imgedit.src='imagens/edit.png';
-           let imgdel=document.createElement('img');
-           imgdel.src='imagens/del.png'
+           let imgedit=document.createElement('button');
+           imgedit.innerText="Editar";
+           let imgdel=document.createElement('button');
+           imgdel.innerText="Deletar"
            imgdel.setAttribute("onclick","jogos.apagar("+ this.arrayjogos[i].id+ ")");
-           imgedit.setAttribute("onclick","jogos.Editar("+  JSON.stringify(this.arrayjogos[i])+")");
+           imgedit.setAttribute("onclick","jogos.editar("+  JSON.stringify(this.arrayjogos[i])+")");
            
            
            td_acoes.appendChild(imgdel);
@@ -83,6 +90,8 @@ class Jogos{
         document.getElementById('Jogo1').value='';
         document.getElementById('genero').value='';
         document.getElementById('preco1').value='';
+        document.getElementById('btn1').innerText="Salvar"
+        this.edit=null;
            
            
 
@@ -100,12 +109,25 @@ class Jogos{
         } 
        }
     }
-    Editar(d)
-    {
+    atualizar(id,jogos){
+        for(let i =0;i<this.arrayjogos.length;i++){
+            if(this.arrayjogos[i].id==id){
+                this.arrayjogos[i].nomeJogo=jogos.nomeJogo
+                this.arrayjogos[i].genero=jogos.genero
+                this.arrayjogos[i].preco=jogos.preco
+            }
+        }
 
-        document.getElementById('Jogo1').value=d.nomeJogo;
-        document.getElementById('genero').value=d.genero;
-        document.getElementById('preco1').value=d.preco1;
+    }
+    
+    editar(jogos)
+    {
+        
+        this.edit=jogos.id;
+
+        document.getElementById('Jogo1').value=jogos.nomeJogo;
+        document.getElementById('genero').value=jogos.genero;
+        document.getElementById('preco1').value=jogos.preco;
         document.getElementById('btn1').innerText="Atualizar";
     }
      
